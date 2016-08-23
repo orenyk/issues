@@ -22,15 +22,15 @@ defmodule Issues.CLI do
   """
   def parse_args(argv) do
     parse = OptionParser.parse(argv, switches: [ help: :boolean ],
-                                     aliases: [ h: :help ])
+     aliases: [ h: :help ])
 
-    case parse do
-      { [ help: true], _, _ } -> :help
-      { _, [ user, project, count ], _ } -> { user, project,
-                                              String.to_integer(count) }
+   case parse do
+     { [ help: true], _, _ } -> :help
+     { _, [ user, project, count ], _ } -> { user, project,
+       String.to_integer(count) }
       { _, [ user, project ], _ } -> { user, project, @default_count }
       _ -> :help
-    end
+   end
   end
 
   def process(:help) do
@@ -46,6 +46,7 @@ defmodule Issues.CLI do
     |> convert_to_list_of_maps
     |> sort_into_ascending_order
     |> Enum.take(count)
+    |> Issues.Printer.print_table
   end
 
   def decode_response({:ok, body}), do: body
@@ -62,6 +63,7 @@ defmodule Issues.CLI do
 
   def sort_into_ascending_order(list_of_issues) do
     Enum.sort list_of_issues,
-              fn i1, i2 -> i1["created_at"] <= i2["created_at"] end
+    fn i1, i2 -> i1["created_at"] <= i2["created_at"] end
   end
 end
+
