@@ -3,6 +3,8 @@ defmodule Issues.Mixfile do
 
   def project do
     [app: :issues,
+     name: "Issues",
+     source_url: "https://github.com/orenyk/issues",
      escript: escript_config,
      version: "0.1.0",
      elixir: "~> 1.3",
@@ -29,8 +31,10 @@ defmodule Issues.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:httpoison, "~> 0.9.0"},
-      {:poison, "~> 2.2.0"}
+      httpoison: "~> 0.9.0",
+      poison: "~> 2.2.0",
+      ex_doc: "~> 0.13.0",
+      earmark: "~> 1.0.1"
     ]
   end
 

@@ -20,7 +20,7 @@ defmodule Issues.CLI do
   Otherwise it is a github user name, project name, and (optionally) the number
   of entries to format.
 
-  Returns a tuple of `{ user, project, count }', or `:help` if help was given.
+  Returns a tuple of `{ user, project, count }`, or `:help` if help was given.
   """
   def parse_args(argv) do
     parse = OptionParser.parse(argv, switches: [ help: :boolean ],
