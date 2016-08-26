@@ -9,7 +9,7 @@ defmodule Issues.CLI do
   end up generating a table of the last _n_ issues in a github project.
   """
 
-  def run(argv) do
+  def main(argv) do
     parse_args(argv)
     |> process
   end
